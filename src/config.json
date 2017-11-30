@@ -1,0 +1,233 @@
+{
+  "title": "昔日同窗",
+  "meta": {
+    "designWidth": 750,
+    "designHeight": 1250,
+    "designDeviceRatio": 2
+  },
+  "music": {
+    "control": {
+      "icon": {
+        "url": "../presets/img/audio.png",
+        "width": 60,
+        "height": 60
+      },
+      "position": "topRight",
+      "offset": 20,
+      "opacity": 0.8,
+      "zIndex": 9999
+    },
+    "preload": true,
+    "autoPlay": true,
+    "loop": true,
+    "source": "./music/demo.mp3"
+  },
+  "wechat": {
+    "signPackageUrl": "/test",
+    "shareOption": {
+      "title": "",
+      "desc": "",
+      "link": "",
+      "imgUrl": ""
+    }
+  },
+  "loader": {
+    "backgroundColor": "#fff",
+    "animateType": "jump",
+    "iconPath": "./presets/img/loader.png",
+    "progressBar": true,
+    "preloadResources": true
+  },
+  "dependencies": {
+    "animate.min.css": {
+      "path": "node_modules/animate.css/animate.min.css",
+      "position": "head"
+    },
+    "swiper.min.css": {
+      "path": "node_modules/swiper/dist/css/swiper.min.css",
+      "position": "head"
+    },
+    "hotcss.js": {
+      "path": "node_modules/hotcss/src/hotcss.js",
+      "position": "head"
+    },
+    "jquery.min.js": {
+      "path": "node_modules/jquery/dist/jquery.min.js",
+      "position": "body"
+    },
+    "swiper.min.js": {
+      "path": "node_modules/swiper/dist/js/swiper.min.js",
+      "position": "body"
+    }
+  },
+  "pages": [
+    {
+      "id": "01",
+      "background": {
+        "image": "../img/01/bg.jpg"
+      },
+      "elements": [
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/01/footer.png",
+            "width": 750,
+            "height": 24,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "footer"
+        },
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/01/schoolgate.png",
+            "width": 750,
+            "height": 862,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "schoolgate"
+        },
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/01/title.png",
+            "width": 502,
+            "height": 334,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "title"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "background": {
+        "image": "../img/02/bg.jpg"
+      },
+      "elements": [
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/02/bike.png",
+            "width": 434,
+            "height": 418,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "bike"
+        },
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/02/flag.png",
+            "width": 196,
+            "height": 99,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "flag"
+        },
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/02/subtitle.png",
+            "width": 430,
+            "height": 104,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "subtitle"
+        },
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/02/title.png",
+            "width": 583,
+            "height": 232,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "title"
+        },
+        {
+          "type": "image",
+          "image": {
+            "url": "../img/02/tv.png",
+            "width": 658,
+            "height": 471,
+            "top": 0,
+            "left": 0
+          },
+          "animation": {
+            "in": {
+              "animationClassName": "fadeIn",
+              "delay": 500,
+              "duration": 1000,
+              "timingFunction": "linear"
+            }
+          },
+          "id": "tv"
+        }
+      ]
+    }
+  ]
+}

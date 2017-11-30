@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+{{include './header.art'}}
+
+<body>
+    {{if loader}}
+    <div class="loading-wrapper">
+        <div class="loader">
+            <img class="ld ld-{{loader.animateType}}" src="{{loader.iconPath}}">
+            {{if progressBar}}
+            <div id="loadingBar" data-preset="line" style="width: 100%"></div>
+            {{/if}}
+        </div>
+    </div>
+    {{/if}}
+    {{if music}}
+    <div id="audio-btn" class="rotate">
+        <audio {{if music.loop}}loop{{/if}} {{if music.preload}}preload{{/if}} src="{{music.source}}" id="media"></audio>
+    </div>
+    {{/if}}
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        {{each pages page}}
+        <div class="swiper-slide">
+            <div id="slide-{{page.id}}" class="slide slide-{{page.id}}">
+                {{each page.elements elem}}
+                <div id="slide-{{page.id}}-{{elem.id}}" {{if elem.animation.in || elem.animation.out}}class="ani" {{/if}}{{if elem.animation.in}} data-slide-in="at {{elem.animation.in.delay}} from {{elem.animation.in.animationClassName}} use {{elem.animation.in.timingFunction}} during {{elem.animation.in.duration}}" {{/if}} {{if elem.animation.out}}data-slide-out="at {{elem.animation.out.delay}} to {{elem.animation.out.animationClassName}} use {{elem.animation.out.timingFunction}} during {{elem.animation.out.duration}} force" {{/if}}></div>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+        </div>
+    </div>
+    {{each dependencies dependency name}}
+        {{if dependency.position==='body'}}
+            {{if name.endsWith('js')}}
+                <script src="scripts/vendor/{{name}}"></script>
+            {{/if}}
+        {{/if}}
+    {{/each}}
+    <script src="scripts/swiper.animate-twice.js"></script>
+    {{if progressBar}}
+    <script src="scripts/loading-bar.js"></script>
+    {{/if}}
+    {{if wechat}}
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    {{/if}}
+    <script>
+      var mySwiper = new Swiper('.swiper-container', {
+        direction: 'vertical',
+        onInit: function(swiper) {
+          swiperAnimateCache(swiper);
+          swiperAnimate(swiper);
+        },
+        onSlideChangeEnd: function(swiper) {
+          swiperAnimate(swiper);
+        }
+      });
+      // music
+      {{if music}}
+      var music = document.getElementById("media");
+      $("#audio-btn").click(function() {
+        $(this).toggleClass("rotate");
+        if ($(this).hasClass("rotate")) {
+          music.play();
+        } else {
+          music.pause();
+        }
+      });
+      {{if wechat}}
+      // wechat auto play music fix
+      document.addEventListener("WeixinJSBridgeReady", function() {
+        music.play();
+      }, false);
+      {{/if}}
+      {{/if}}
+      // wechat share
+      {{if wechat}}
+        var signPackage = null;
+        var shareOption = {{@wechat.shareOption|JSON.stringify}};
+        $.ajax({
+          url:'{{wechat.signPackageUrl}}',
+          type: 'post',
+          async:false,
+          success: function(data){
+            signPackage = data;
+          }
+        })
+        wx.config({
+          appId: signPackage.appId,
+          timestamp: signPackage.timestamp,
+          nonceStr: signPackage.nonceStr,
+          signature: signPackage.signature,
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+        });
+        wx.ready(function() {
+          wx.onMenuShareAppMessage(shareOption);
+          wx.onMenuShareTimeline(shareOption);
+          wx.onMenuShareQQ(shareOption);
+          wx.onMenuShareWeibo(shareOption);
+      });
+      {{/if}}
+    </script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

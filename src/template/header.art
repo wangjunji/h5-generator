@@ -1,0 +1,17 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="hotcss" content="design-width={{designWidth}}">
+    {{each dependencies dependency name}}
+        {{if dependency.position === 'head' && name.endsWith('css')}}
+            <link rel="stylesheet" href="style/vendor/{{name}}">
+        {{/if}}
+    {{/each}}
+    <link rel="stylesheet" href="style/h5.css">
+    {{each dependencies dependency name}}
+        {{if dependency.position === 'head' && name.endsWith('js')}}
+                <script src="scripts/vendor/{{name}}"></script>
+        {{/if}}
+    {{/each}}
+    <title>{{title}}</title>
+</head>

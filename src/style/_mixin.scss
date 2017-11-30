@@ -1,0 +1,24 @@
+@import "px2rem";
+@import "retina";
+
+@mixin h5-element($url,$width,$height,$top:null,$bottom:null,$left:null,$right:null,$zIndex:null) {
+    position: absolute;
+    @if($top){
+        top: px2rem($top);
+    }
+    @if($bottom){
+        bottom: px2rem($bottom);
+    }
+    @if($left){
+        left: px2rem($left);
+    }
+    @if($right){
+        right: px2rem($right);
+    }
+    @if($zIndex){
+        z-index: $zIndex;
+    }
+    width: px2rem($width);
+    height: px2rem($height);
+    @include retina($url,2,cover,no-repeat);
+}

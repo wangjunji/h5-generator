@@ -1,0 +1,48 @@
+@import "mixin";
+
+body {
+  position: relative;
+  width: px2rem($designWidth);
+  margin: 0 auto;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+}
+
+.rotate {
+  animation: rotating 1.2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@-moz-keyframes rotating {
+  from {
+    -moz-transform: rotate(0)
+  }
+  to {
+    -moz-transform: rotate(360deg)
+  }
+}

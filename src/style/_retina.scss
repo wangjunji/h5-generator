@@ -1,0 +1,48 @@
+@mixin retina($path, $cap: 2, $size: auto auto, $extras: null) {
+  $position: -1;
+  $strpath: '#{$path}';
+  $length: str-length($strpath);
+
+  @for $i from $length through $length - 10{
+      @if $position == -1 {
+          $char : str-slice($strpath, $i, $i);
+          @if str-index($char, ".") == 1 {
+              $position: $i;
+          }
+      }
+  }
+
+  @if $position != -1 {
+    $ext: str-slice($strpath, $position + 1, $length);
+    $base: str-slice($strpath, 1, $position - 1);
+    $at1x_path: "#{$base}@1x.#{$ext}";
+    $at2x_path: "#{$base}@2x.#{$ext}";
+
+    background: url("#{$at1x_path}") $extras;
+    background-size: $size;
+
+    @media all and (-webkit-min-device-pixel-ratio : 1.5),
+           all and (-o-min-device-pixel-ratio: 3/2),
+           all and (min--moz-device-pixel-ratio: 1.5),
+           all and (min-device-pixel-ratio: 1.5) {
+             background      : url("#{$at2x_path}") $extras;
+             background-size : $size;
+    }
+
+    @if $cap >= 2 {
+      @for $env from 2 through $cap {
+        $suffix: "@#{$env}x";
+        @media (-webkit-min-device-pixel-ratio: $env),
+               (min-resolution: $env * 96dpi) {
+                 background      : url("#{$base}#{$suffix}.#{$ext}") $extras;
+                 background-size : $size;
+        }
+      }
+    }
+
+  } @else {
+    background: url("#{$path}") $extras;
+    background-size: $size;
+  }
+
+}
